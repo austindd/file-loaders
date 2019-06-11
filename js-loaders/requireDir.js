@@ -1,3 +1,4 @@
+
 const fs = require("fs");
 const path = require("path");
 
@@ -9,11 +10,12 @@ function walkDir(_dir) {
     if (stats.isDirectory()) return walkDir(filePath)
     else if (stats.isFile()) return filePath;
   });
+
   /* Concatenate all the nested arrays into a single flat array of filenames. */
   return files.reduce((all, folderContents) => all.concat(folderContents), []);
 }
 
-function requireDir(dir, testFileName = /\.js/, exclude, callback) {
+function requireDir(dir, testFileName = ".js", exclude, callback) {
 
   const allFilePaths = walkDir(dir); /* should be a flat array of file paths, not directories */
   const allExports = {};
@@ -58,9 +60,11 @@ function requireDir(dir, testFileName = /\.js/, exclude, callback) {
   } else {
     return allExports;
   }
+
 }
 
 module.exports = {
   requireDir: requireDir
 }
+
 
