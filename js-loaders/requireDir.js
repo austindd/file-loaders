@@ -15,8 +15,6 @@ function walkDir(_dir) {
 
 function requireDir(dir, testFileName = /\.js/, exclude, callback) {
 
-  let args = Array.prototype.slice.apply(arguments);
-
   const allFilePaths = walkDir(dir); /* should be a flat array of file paths, not directories */
   const allExports = {};
 
